@@ -1,13 +1,15 @@
 {
   "extends": "@tsconfig/node16/tsconfig.json",
-  "include": ["src/**/*", "bin/*"],
+  "include": ["./src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"],
   "compilerOptions": {
+    "target": "ES6", //해당 버전으로 컴파일
+    "module": "commonjs", //해당 모듈 방식으로 컴파일
     "rootDir": ".",
     "outDir": "dist",
+    "moduleResolution": "node", //모듈 해석 방법 설정: 'node' (Node.js)
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
     "typeRoots": ["node_modules/@types", "src/@types"]
-  },
-  "ts-node": {
-    "files": true
   }
 }
