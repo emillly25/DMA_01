@@ -1,10 +1,22 @@
-import type { NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
+import * as api from './api/api'
+import { useState } from 'react'
+
+interface userType {
+  name: string
+}
 
 const Home: NextPage = () => {
-  function sum(a: number, b: number) {
-    return a + b
+  const [data, setData] = useState<string>('')
+
+  async function posting() {
+    const user = { name: data }
+    console.log(user)
+    const res = await api.post('/api/users', user)
+    console.log('post 응답', res)
   }
+
   return (
     <div>
       <Head>
@@ -13,7 +25,14 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>Welcome Next</div>
-      <div>result: {sum(1, 3)}</div>
+      <input
+        type="text"
+        value={data}
+        onChange={(e) => {
+          setData(e.target.value)
+        }}
+      />
+      <button onClick={posting}>클릭</button>
     </div>
   )
 }

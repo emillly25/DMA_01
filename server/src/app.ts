@@ -1,6 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import { userRouter } from './routers/userRouter';
+import bodyParser from 'body-parser';
 
 const app = express();
 
@@ -13,11 +14,14 @@ app.use(
   }),
 );
 
-// Content-Type: application/json 형태의 데이터를 인식하고 핸들링할 수 있게 함.
-app.use(express.json());
+//body-parser사용
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
+// Content-Type: application/json 형태의 데이터를 인식하고 핸들링할 수 있게 함.
+// app.use(express.json());
 // Content-Type: application/x-www-form-urlencoded 형태의 데이터를 인식하고 핸들링할 수 있게 함.
-app.use(express.urlencoded({ extended: false }));
+// app.use(express.urlencoded({ extended: false }));
 
 app.get('/', (req: Request, res: Response, next: NextFunction) => {
   res.send('welcome!');
