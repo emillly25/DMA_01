@@ -1,8 +1,8 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
-import Image from 'next/image';
-import Logo from '../../assets/mainLogo.png';
-import { MenuModal } from './MenuModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
+import Image from 'next/image'
+import Logo from '../../assets/mainLogo.png'
+import { MenuModal } from './MenuModal'
 
 export const Header = () => {
   return (
@@ -22,5 +22,5 @@ export const Header = () => {
         </a>
       </nav>
     </header>
-  );
-};
+  )
+}
