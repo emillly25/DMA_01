@@ -1,18 +1,18 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBars,
   faX,
   faUser,
   faFilePen,
-} from '@fortawesome/free-solid-svg-icons'
-import Image from 'next/image'
-import EngLogo from '../../assets/engLogo.png'
-import { useState } from 'react'
+} from '@fortawesome/free-solid-svg-icons';
+import Image from 'next/image';
+import EngLogo from '../../assets/engLogo.png';
+import { useState } from 'react';
 
 export const MenuModal = () => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
   function sideMenuController() {
-    setIsOpen((cur) => !cur)
+    setIsOpen((cur) => !cur);
   }
   return (
     <>
@@ -41,7 +41,7 @@ export const MenuModal = () => {
       >
         <div className="bg-white flex items-center justify-between">
           <div className="ml-3">
-            <Image src={EngLogo} width={200} height={80} />
+            <Image src={EngLogo} width={200} height={80} alt="engLogo" />
           </div>
           <span onClick={sideMenuController}>
             <FontAwesomeIcon
@@ -78,5 +78,5 @@ export const MenuModal = () => {
         </ul>
       </div>
     </>
-  )
-}
+  );
+};
