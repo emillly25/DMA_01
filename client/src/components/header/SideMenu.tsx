@@ -8,6 +8,7 @@ import {
 import Image from 'next/image'
 import EngLogo from '../../assets/engLogo.png'
 import { useState } from 'react'
+import Link from 'next/link'
 
 export const SideMenu = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -74,7 +75,9 @@ export const SideMenu = () => {
           <li className="my-4">교육과정</li>
           <li className="my-4">입학안내</li>
           <li className="my-4">DMA 소식</li>
-          <li className="my-4">상담예약</li>
+          <Link href="/reservation">
+            <li className="my-4">상담예약</li>
+          </Link>
         </ul>
       </div>
     </>
