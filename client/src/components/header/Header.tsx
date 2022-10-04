@@ -6,7 +6,7 @@ import { SideMenu } from './SideMenu'
 
 export const Header = () => {
   return (
-    <header className="container mx-auto relative p-10 bg-slate-100 text-gray-500">
+    <header className="container mx-auto relative w-screen h-[80px] bg-slate-100 text-gray-500 ">
       <a className="absolute left-2 top-2">
         <Image src={Logo} width={200} height={70} alt="mainLogo" />
       </a>

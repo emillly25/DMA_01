@@ -4,7 +4,7 @@ import { faYoutube, faInstagram } from '@fortawesome/free-brands-svg-icons'
 
 export const Footer = () => {
   return (
-    <footer className=" text-gray-500 bg-slate-200 container px-5 py-5 mx-auto  ">
+    <footer className=" text-gray-500 bg-slate-200 container w-screen p-5 mx-auto  ">
       <p className="text-xs py-1">대치수학</p>
       <p className="text-xs py-1">대표: 김지혜 | 사업자번호 111-11-11111</p>
       <p className="text-xs py-1">
