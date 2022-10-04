@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import Image from 'next/image'
 import Logo from '../../assets/mainLogo.png'
-import { MenuModal } from './MenuModal'
+import { SideMenu } from './SideMenu'
 
 export const Header = () => {
   return (
@@ -10,7 +10,7 @@ export const Header = () => {
       <a className="absolute left-2 top-2">
         <Image src={Logo} width={200} height={70} alt="mainLogo" />
       </a>
-      <MenuModal />
+      <SideMenu />
       <nav className="md:ml-auto hidden md:block flex flex-wrap items-center text-lg justify-center absolute right-2 top-7">
         <a className="mr-5 hover:text-gray-900">DMA 소개</a>
         <a className="mr-5 hover:text-gray-900">교육과정</a>
