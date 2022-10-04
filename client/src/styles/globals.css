@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .dots_custom {
+    display: inline-block;
+    vertical-align: middle;
+    margin: auto 0;
+    padding: 0;
+  }
+
+  .dots_custom li {
+    list-style: none;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 6px;
+    padding: 0;
+  }
+
+  .dots_custom li button {
+    border: none;
+    background: #f7fafa;
+    color: transparent;
+    cursor: pointer;
+    display: block;
+    height: 12px;
+    width: 12px;
+    border-radius: 100%;
+    padding: 0px;
+    margin: 0 5px;
+  }
+
+  .dots_custom li.slick-active button {
+    background-color: #757678;
+  }
+}
