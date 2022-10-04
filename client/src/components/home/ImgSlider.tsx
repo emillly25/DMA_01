@@ -75,18 +75,16 @@ export const ImgSlider = () => {
         <div className="relative w-full h-[60vh] md:h-screen">
           <Image src={two} layout="fill" alt="photo" />
         </div>
+        <div className="relative w-full h-[60vh] md:h-screen">
+          <Image src={four} layout="fill" alt="photo" />
+        </div>
+        <div className="relative w-full h-[60vh] md:h-screen">
+          <Image src={three} layout="fill" alt="photo" />
+        </div>
+        <div className="relative w-full h-[60vh] md:h-screen">
+          <Image src={five} layout="fill" alt="photo" />
+        </div>
       </Slider>
     </div>
   )
-}
-{
-  /* <div className="relative w-full h-screen">
-          <Image src={four} alt="photo" />
-        </div>
-        <div className="relative w-full h-screen">
-          <Image src={three} alt="photo" />
-        </div>
-        <div className="relative w-full h-screen">
-          <Image src={five} alt="photo" />
-        </div> */
 }
