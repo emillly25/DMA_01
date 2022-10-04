@@ -9,7 +9,7 @@ import Image from 'next/image'
 import EngLogo from '../../assets/engLogo.png'
 import { useState } from 'react'
 
-export const MenuModal = () => {
+export const SideMenu = () => {
   const [isOpen, setIsOpen] = useState(false)
   function sideMenuController() {
     setIsOpen((cur) => !cur)

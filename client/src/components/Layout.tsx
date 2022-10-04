@@ -1,3 +1,11 @@
+import { Header } from './header/Header'
+import { Footer } from './Footer'
 export default function Layout({ children }) {
-  return <div>{children}</div>
+  return (
+    <div>
+      <Header />
+      {children}
+      <Footer />
+    </div>
+  )
 }
