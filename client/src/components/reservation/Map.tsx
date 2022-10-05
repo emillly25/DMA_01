@@ -48,5 +48,10 @@ export default function Map({ latitude, longitude }: MapProps) {
     mapScript.addEventListener('load', onLoadKakaoMap)
     return () => mapScript.removeEventListener('load', onLoadKakaoMap)
   }, [latitude, longitude])
-  return <div id="map" className="w-full h-full "></div>
+  return (
+    <div className="w-full h-[600px]   p-3 ">
+      <h2 className="font-bold text-lg text-center mb-3">오시는 길</h2>
+      <div id="map" className="w-full h-[500px] "></div>
+    </div>
+  )
 }

@@ -38,9 +38,10 @@ export default function ReservationForm() {
   }
 
   return (
-    <div className="w-full h-[600px]  ">
-      <div className="flex flex-col items-start">
-        <div className="mx-auto my-5 ">
+    <div className="w-full h-[600px] p-3">
+      <h2 className="font-bold text-lg text-center mb-3">상담예약</h2>
+      <div className=" flex flex-col items-start ">
+        <div className="mx-auto pr-2  ">
           <div className="flex items-center py-2 ">
             <label
               htmlFor="name"
