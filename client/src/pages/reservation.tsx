@@ -8,12 +8,9 @@ export default function Reservation() {
   }
   return (
     <Layout>
-      <h1 className="text-lg font-bold text-center py-5">상담예약</h1>
-      <div className="container mx-auto flex gap-5 flex-col md:flex-row mb-10 ">
+      <div className="container mx-auto flex gap-5 flex-col md:flex-row mb-10 mt-3">
         <ReservationForm />
-        <div className="w-full h-[500px]">
-          <Map latitude={LOCATION.latitude} longitude={LOCATION.longitude} />
-        </div>
+        <Map latitude={LOCATION.latitude} longitude={LOCATION.longitude} />
       </div>
     </Layout>
   )
