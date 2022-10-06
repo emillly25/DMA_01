@@ -22,9 +22,11 @@ export const Header = () => {
         <Link href="/reservation">
           <a className="mr-5 hover:text-gray-900">상담예약</a>
         </Link>
-        <a className="border-solid border-2 border-slate-400 px-2 py-1 rounded-full ">
-          <FontAwesomeIcon icon={faUser} className="text-xl text-black" />
-        </a>
+        <Link href="/login">
+          <a className="border-solid border-2 border-slate-400 px-2 py-1 rounded-full ">
+            <FontAwesomeIcon icon={faUser} className="text-xl text-black" />
+          </a>
+        </Link>
       </nav>
     </header>
   )

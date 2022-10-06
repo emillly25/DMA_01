@@ -1,10 +1,11 @@
 import axios from 'axios'
 
-async function get(apiUrl: string) {
+async function get(apiUrl: string, code?: string | string[]) {
   const result = await axios.get(
     `${process.env.NEXT_PUBLIC_BASE_URL}${apiUrl}`,
     {
       withCredentials: true,
+      params: { code: code },
     },
   )
 
