@@ -12,8 +12,8 @@
     "client": "cd client && npm run dev",
     "server": "cd server && npm run dev",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "server-build": "cd server && npm ci --dev",
-    "heroku-prebuild": "npm run server-build && npm run build && cd ..",
+    "server-build": "cd server && npm ci --dev && tsc",
+    "heroku-prebuild": "npm run server-build && cd ..",
     "start": "cd server && npm run start"
   },
   "repository": {
