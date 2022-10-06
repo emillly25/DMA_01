@@ -12,9 +12,9 @@
     "client": "cd client && npm run dev",
     "server": "cd server && npm run dev",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "server-build": "cd server && npm ci --dev && tsc",
-    "heroku-prebuild": "npm run server-build && cd ..",
-    "start": "cd server && npm run start"
+    "server-build": "cd server && npm ci --dev && npm run build && cd ..",
+    "heroku-prebuild": "npm run server-build",
+    "start": "cd server && npm ci && npm run start"
   },
   "repository": {
     "type": "git",
