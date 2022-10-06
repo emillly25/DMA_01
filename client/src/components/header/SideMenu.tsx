@@ -56,12 +56,14 @@ export const SideMenu = () => {
             로그인이 필요합니다!
           </h3>
           <div className="flex justify-center gap-3 flex-wrap">
-            <div className="w-[100px] p-1 bg-white text-black rounded-sm flex justify-center">
-              <span>
-                <FontAwesomeIcon icon={faUser} className="text-black mx-1" />
-              </span>
-              로그인
-            </div>
+            <Link href="/login">
+              <div className="w-[100px] p-1 bg-white text-black rounded-sm flex justify-center">
+                <span>
+                  <FontAwesomeIcon icon={faUser} className="text-black mx-1" />
+                </span>
+                로그인
+              </div>
+            </Link>
             <div className="w-[100px] p-1 bg-white text-black rounded-sm">
               <span>
                 <FontAwesomeIcon icon={faFilePen} className="text-black mx-1" />
