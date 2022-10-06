@@ -4,7 +4,18 @@ const UserSchema = new Schema(
   {
     name: {
       type: String,
-      required: true,
+    },
+    email: {
+      type: String,
+    },
+    profile_url: {
+      type: String,
+    },
+    password: {
+      type: String,
+    },
+    role: {
+      type: String,
     },
   },
   {
