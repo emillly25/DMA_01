@@ -1,11 +1,13 @@
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
+import 'dotenv/config';
 import { userRouter } from './routers/userRouter';
 import { loginRouter } from './routers/loginRouter';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 
 const app = express();
+const PORT = process.env.PORT || 5000;
 
 // CORS 에러 방지
 app.use(
@@ -33,5 +35,9 @@ app.get('/', (req: Request, res: Response, next: NextFunction) => {
 });
 app.use('/api', userRouter);
 app.use('/auth', loginRouter);
+
+app.listen(PORT, () => {
+  console.log(`정상적으로 서버가 연결되었습니다. http://localhost:${PORT}`);
+});
 
 export { app };
