@@ -15,11 +15,11 @@ export const SideMenu = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isLogin, setIsLogin] = useState(false)
 
-  // useEffect(() => {
-  //   const value = sessionStorage.getItem('isLogin')
-  //   const convertedBool = value === 'true'
-  //   setIsLogin(convertedBool)
-  // }, [value])
+  useEffect(() => {
+    const result = sessionStorage.getItem('isLogin')
+    const convertedBool = result === 'true'
+    setIsLogin(convertedBool)
+  }, [])
 
   function sideMenuController() {
     setIsOpen((cur) => !cur)
@@ -28,6 +28,7 @@ export const SideMenu = () => {
     if (confirm('로그아웃 하시겠습니까?')) {
       await api.get('/auth/logout')
       sessionStorage.removeItem('isLogin')
+      setIsLogin(false)
       setIsOpen(false)
     }
   }
