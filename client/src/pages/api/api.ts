@@ -5,6 +5,9 @@ async function get(apiUrl: string, code?: string | string[]) {
     `${process.env.NEXT_PUBLIC_BASE_URL}${apiUrl}`,
     {
       withCredentials: true,
+      headers: {
+        Authorization: sessionStorage.getItem('token'),
+      },
       params: { code: code },
     },
   )

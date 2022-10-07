@@ -15,6 +15,7 @@ export default function SocialLogin() {
   async function login(code: string | string[]) {
     try {
       const res = await api.get('/auth/kakao', code)
+      sessionStorage.setItem('token', res.data.token)
       sessionStorage.setItem('isLogin', res.data.isLogin)
     } catch (error) {
       console.error(error)

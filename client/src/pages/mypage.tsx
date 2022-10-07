@@ -28,6 +28,7 @@ export default function MyPage() {
     if (confirm('로그아웃 하시겠습니까?')) {
       await api.get('/auth/logout')
       sessionStorage.removeItem('isLogin')
+      sessionStorage.removeItem('token')
       router.push('/')
     }
   }

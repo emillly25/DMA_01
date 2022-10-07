@@ -7,7 +7,7 @@ interface UserIdRequest extends Request {
 
 function loginRequired(req: UserIdRequest, res: Response, next: NextFunction) {
   //1. 프론트에서 api요청할때 withCredential을 true로 설정하면 알아서 쿠키가 넘어옴
-  const userToken = req.signedCookies.token;
+  const userToken = req.headers.authorization;
 
   if (!userToken || userToken === 'null') {
     console.log('서비스 사용 요청이 있습니다.하지만, Authorization 토큰: 없음');
