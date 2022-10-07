@@ -13,7 +13,7 @@ export const Header = () => {
     const result = sessionStorage.getItem('isLogin')
     const convertedBool = result === 'true'
     setIsLogin(convertedBool)
-  }, [])
+  }, [isLogin])
 
   // useEffect(() => {
   //   setIsLogin(i)
