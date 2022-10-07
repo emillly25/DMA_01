@@ -8,14 +8,14 @@ export default function SocialLogin() {
   useEffect(() => {
     if (code) {
       login(code)
+      router.push('/')
     }
-    // router.push('/')
   }, [code])
 
   async function login(code: string | string[]) {
     try {
       const res = await api.get('/auth/kakao', code)
-      console.log('인가코드 넘겨주기', res)
+      sessionStorage.setItem('isLogin', res.data.isLogin)
     } catch (error) {
       console.error(error)
     }

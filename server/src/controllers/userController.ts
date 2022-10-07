@@ -41,7 +41,7 @@ class UserController {
           httpOnly: true,
           signed: true,
         })
-        .json(userToken);
+        .json({ isLogin: true });
     } catch (error) {
       console.error(error);
     }
@@ -70,7 +70,6 @@ class UserController {
         const accessToken = tokens[0].slice(0, 12);
         if (accessToken === 'accessToken=') {
           const accessTokenValue = tokens[0].slice(12);
-          console.log(accessTokenValue);
           await userService.kakaoLogoutService(accessTokenValue);
           res.clearCookie('accessToken');
         }

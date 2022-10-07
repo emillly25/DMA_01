@@ -7,18 +7,29 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import Image from 'next/image'
 import EngLogo from '../../assets/engLogo.png'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import * as api from '../../pages/api/api'
 
 export const SideMenu = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [isLogin, setIsLogin] = useState(false)
+  const value = sessionStorage.getItem('isLogin')
+
+  useEffect(() => {
+    const convertedBool = value === 'true'
+    setIsLogin(convertedBool)
+  }, [value])
+
   function sideMenuController() {
     setIsOpen((cur) => !cur)
   }
   async function logout() {
-    const res = await api.get('/auth/logout')
-    console.log('로그아웃', res)
+    if (confirm('로그아웃 하시겠습니까?')) {
+      await api.get('/auth/logout')
+      sessionStorage.removeItem('isLogin')
+      setIsOpen(false)
+    }
   }
   return (
     <>
@@ -57,36 +68,67 @@ export const SideMenu = () => {
           </span>
         </div>
         <div className="bg-lime-800 flex flex-col text-white pt-5 pb-10">
-          <h3 className="text-center p-3 mb-2 font-bold text-lg ">
-            로그인이 필요합니다!
-          </h3>
-          <div className="flex justify-center gap-3 flex-wrap">
-            <Link href="/login">
-              <div className="w-[100px] p-1 bg-white text-black rounded-sm flex justify-center">
-                <span>
-                  <FontAwesomeIcon icon={faUser} className="text-black mx-1" />
-                </span>
-                로그인
-              </div>
-            </Link>
-            <Link href="/register">
-              <div className="w-[100px] p-1 bg-white text-black rounded-sm">
+          {!isLogin ? (
+            <h3 className="text-center p-3 mb-2 font-bold text-lg ">
+              로그인이 필요합니다!
+            </h3>
+          ) : (
+            <h3 className="text-center p-3 mb-2 font-bold text-lg ">
+              환영합니다! OOO 님
+            </h3>
+          )}
+          {!isLogin ? (
+            <div className="flex justify-center gap-3 flex-wrap">
+              <Link href="/login">
+                <div className="w-[100px] p-1 bg-white text-black rounded-sm flex justify-center">
+                  <span>
+                    <FontAwesomeIcon
+                      icon={faUser}
+                      className="text-black mx-1"
+                    />
+                  </span>
+                  로그인
+                </div>
+              </Link>
+              <Link href="/register">
+                <div className="w-[100px] p-1 bg-white text-black rounded-sm">
+                  <span>
+                    <FontAwesomeIcon
+                      icon={faFilePen}
+                      className="text-black mx-1"
+                    />
+                  </span>
+                  회원가입
+                </div>
+              </Link>
+            </div>
+          ) : (
+            <div className="flex justify-center gap-3 flex-wrap">
+              <Link href="/mypage">
+                <div className="w-[100px] p-1 bg-white text-black rounded-sm flex justify-center">
+                  <span>
+                    <FontAwesomeIcon
+                      icon={faUser}
+                      className="text-black mx-1"
+                    />
+                  </span>
+                  MY PAGE
+                </div>
+              </Link>
+              <div
+                onClick={logout}
+                className="w-[100px] p-1 bg-white text-black rounded-sm"
+              >
                 <span>
                   <FontAwesomeIcon
                     icon={faFilePen}
                     className="text-black mx-1"
                   />
                 </span>
-                회원가입
+                로그아웃
               </div>
-            </Link>
-            <div
-              onClick={logout}
-              className="w-[100px] p-1 bg-white text-black rounded-sm"
-            >
-              로그아웃
             </div>
-          </div>
+          )}
         </div>
         <ul className="text-black text-lg flex flex-col items-start font-bold ml-10">
           <li className="mt-8 mb-4">DMA 소개</li>
