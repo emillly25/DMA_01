@@ -124,6 +124,9 @@ class UserService {
     const secretKey = process.env.JWT_SECRET_KEY || 'secret-key';
     return jwt.sign({ userId: user._id, role: user.role }, secretKey);
   }
+  async getUserData(userId: string) {
+    return await this.userModel.findById(userId);
+  }
 }
 
 const userService = new UserService(userModel);

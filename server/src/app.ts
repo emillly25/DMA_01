@@ -33,7 +33,7 @@ app.use(cookieParser('my-secret'));
 app.get('/', (req: Request, res: Response, next: NextFunction) => {
   res.send('welcome!');
 });
-app.use('/api', userRouter);
+app.use('/user', userRouter);
 app.use('/auth', loginRouter);
 
 app.listen(PORT, () => {

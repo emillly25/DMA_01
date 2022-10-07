@@ -4,13 +4,12 @@ import * as api from '../api/api'
 export default function SocialLogin() {
   const router = useRouter()
   const { code } = router.query
-  console.log('인가코드', code)
 
   useEffect(() => {
     if (code) {
       login(code)
     }
-    console.log('유즈')
+    // router.push('/')
   }, [code])
 
   async function login(code: string | string[]) {
