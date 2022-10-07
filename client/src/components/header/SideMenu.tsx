@@ -19,7 +19,7 @@ export const SideMenu = () => {
     const result = sessionStorage.getItem('isLogin')
     const convertedBool = result === 'true'
     setIsLogin(convertedBool)
-  }, [])
+  }, [isLogin])
 
   function sideMenuController() {
     setIsOpen((cur) => !cur)
@@ -28,6 +28,7 @@ export const SideMenu = () => {
     if (confirm('로그아웃 하시겠습니까?')) {
       await api.get('/auth/logout')
       sessionStorage.removeItem('isLogin')
+      sessionStorage.removeItem('token')
       setIsLogin(false)
       setIsOpen(false)
     }
