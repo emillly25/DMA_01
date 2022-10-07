@@ -124,6 +124,21 @@ class UserService {
     const secretKey = process.env.JWT_SECRET_KEY || 'secret-key';
     return jwt.sign({ userId: user._id, role: user.role }, secretKey);
   }
+  async getUserData(userId: string) {
+    return await this.userModel.findById(userId);
+  }
+
+  async kakaoLogoutService(accessToken: string) {
+    const response = await axios({
+      method: 'POST',
+      url: 'https://kapi.kakao.com/v1/user/logout',
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded',
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response;
+  }
 }
 
 const userService = new UserService(userModel);

@@ -21,6 +21,9 @@ export class UserModel {
   async create(user: UserData): Promise<UserData> {
     return await User.create(user);
   }
+  async findById(userId: string): Promise<UserData | null> {
+    return await User.findOne({ _id: userId });
+  }
 }
 
 const userModel = new UserModel();

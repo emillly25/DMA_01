@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import { userController } from '../controllers/userController';
+import { loginRequired } from '../middlewares/loginRequired';
 const userRouter: Router = Router();
-userRouter.post('/users', userController.add);
+
+userRouter.get('/', loginRequired, userController.getUserData);
 
 export { userRouter };
