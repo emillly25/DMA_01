@@ -8,11 +8,16 @@ import { useEffect, useState } from 'react'
 
 export const Header = () => {
   const [isLogin, setIsLogin] = useState(false)
-  const value = sessionStorage.getItem('isLogin')
+
   useEffect(() => {
-    const convertedBool = value === 'true'
+    const result = sessionStorage.getItem('isLogin')
+    const convertedBool = result === 'true'
     setIsLogin(convertedBool)
-  }, [value])
+  }, [])
+
+  // useEffect(() => {
+  //   setIsLogin(i)
+  // }, [isLogin])
 
   return (
     <header className="container mx-auto relative w-screen h-[80px] bg-slate-100 text-gray-500 ">
