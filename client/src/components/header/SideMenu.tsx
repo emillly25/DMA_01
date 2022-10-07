@@ -9,11 +9,16 @@ import Image from 'next/image'
 import EngLogo from '../../assets/engLogo.png'
 import { useState } from 'react'
 import Link from 'next/link'
+import * as api from '../../pages/api/api'
 
 export const SideMenu = () => {
   const [isOpen, setIsOpen] = useState(false)
   function sideMenuController() {
     setIsOpen((cur) => !cur)
+  }
+  async function logout() {
+    const res = await api.get('/auth/logout')
+    console.log('로그아웃', res)
   }
   return (
     <>
@@ -75,6 +80,12 @@ export const SideMenu = () => {
                 회원가입
               </div>
             </Link>
+            <div
+              onClick={logout}
+              className="w-[100px] p-1 bg-white text-black rounded-sm"
+            >
+              로그아웃
+            </div>
           </div>
         </div>
         <ul className="text-black text-lg flex flex-col items-start font-bold ml-10">

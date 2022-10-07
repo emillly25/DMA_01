@@ -59,6 +59,30 @@ class UserController {
       next(error);
     }
   }
+  async logout(req: Request, res: Response, next: NextFunction) {
+    //쿠키를 없애야함!
+    try {
+      const cookie = req.headers.cookie;
+      // 쿠키는 문자열이어서 일단 잘라서 배열에 넣자!
+      const tokens: string[] | undefined = cookie?.split('; ');
+      // 배열에서 access_token과 유저토큰을 구분하자
+      if (tokens) {
+        const accessToken = tokens[0].slice(0, 12);
+        if (accessToken === 'accessToken=') {
+          const accessTokenValue = tokens[0].slice(12);
+          console.log(accessTokenValue);
+          await userService.kakaoLogoutService(accessTokenValue);
+          res.clearCookie('accessToken');
+        }
+      }
+      res.clearCookie('token').json({
+        success: true,
+        data: '성공적으로 로그아웃 되었습니다.',
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 const userController = new UserController();

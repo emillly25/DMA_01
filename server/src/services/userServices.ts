@@ -127,6 +127,18 @@ class UserService {
   async getUserData(userId: string) {
     return await this.userModel.findById(userId);
   }
+
+  async kakaoLogoutService(accessToken: string) {
+    const response = await axios({
+      method: 'POST',
+      url: 'https://kapi.kakao.com/v1/user/logout',
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded',
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response;
+  }
 }
 
 const userService = new UserService(userModel);
