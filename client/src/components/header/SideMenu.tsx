@@ -14,12 +14,12 @@ import * as api from '../../pages/api/api'
 export const SideMenu = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isLogin, setIsLogin] = useState(false)
-  const value = sessionStorage.getItem('isLogin')
 
-  useEffect(() => {
-    const convertedBool = value === 'true'
-    setIsLogin(convertedBool)
-  }, [value])
+  // useEffect(() => {
+  //   const value = sessionStorage.getItem('isLogin')
+  //   const convertedBool = value === 'true'
+  //   setIsLogin(convertedBool)
+  // }, [value])
 
   function sideMenuController() {
     setIsOpen((cur) => !cur)
