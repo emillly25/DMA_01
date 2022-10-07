@@ -1,11 +1,13 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCommentDots } from '@fortawesome/free-solid-svg-icons'
 
-import KAKAO_IMG from '../../assets/kakao_login.png'
+interface LoginBoxProps {
+  title: string
+  isLogin?: boolean
+}
 
-export default function KakaoLogin() {
+export default function KakaoLogin({ title }: LoginBoxProps) {
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_REST_API_KEY}&redirect_uri=${process.env.NEXT_PUBLIC_REDIRECT_URI}&response_type=code`
   return (
     <Link href={KAKAO_AUTH_URL}>
@@ -15,7 +17,7 @@ export default function KakaoLogin() {
             <FontAwesomeIcon icon={faCommentDots} />
           </span>
           <p className="font-black text-sm sm:text-lg md:text-2xl">
-            카카오 로그인
+            카카오 {title}
           </p>
         </div>
       </div>

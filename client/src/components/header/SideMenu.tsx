@@ -64,12 +64,17 @@ export const SideMenu = () => {
                 로그인
               </div>
             </Link>
-            <div className="w-[100px] p-1 bg-white text-black rounded-sm">
-              <span>
-                <FontAwesomeIcon icon={faFilePen} className="text-black mx-1" />
-              </span>
-              회원가입
-            </div>
+            <Link href="/register">
+              <div className="w-[100px] p-1 bg-white text-black rounded-sm">
+                <span>
+                  <FontAwesomeIcon
+                    icon={faFilePen}
+                    className="text-black mx-1"
+                  />
+                </span>
+                회원가입
+              </div>
+            </Link>
           </div>
         </div>
         <ul className="text-black text-lg flex flex-col items-start font-bold ml-10">
