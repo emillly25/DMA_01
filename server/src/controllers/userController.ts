@@ -35,11 +35,19 @@ class UserController {
 
       //7. 클라에 데이터 내려주기
       res
-        .cookie('accessToken', access_token, { httpOnly: true })
+        .cookie('accessToken', access_token, {
+          httpOnly: true,
+          sameSite: 'none',
+          secure: true,
+          domain: '.vercel.app',
+        })
         .cookie('token', userToken, {
           expires: expiryDate,
           httpOnly: true,
           signed: true,
+          sameSite: 'none',
+          secure: true,
+          domain: '.vercel.app',
         })
         .json({ isLogin: true });
     } catch (error) {
