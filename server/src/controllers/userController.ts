@@ -34,22 +34,22 @@ class UserController {
       const expiryDate = new Date(Date.now() + 60 * 60 * 1000 * 24 * 3);
 
       //7. 클라에 데이터 내려주기
-      res
-        .cookie('accessToken', access_token, {
-          httpOnly: true,
-          sameSite: 'none',
-          secure: true,
-          domain: '.vercel.app',
-        })
-        .cookie('token', userToken, {
-          expires: expiryDate,
-          httpOnly: true,
-          signed: true,
-          sameSite: 'none',
-          secure: true,
-          domain: '.vercel.app',
-        })
-        .json({ isLogin: true });
+      // res
+      //   .cookie('accessToken', access_token, {
+      //     httpOnly: true,
+      //     sameSite: 'none',
+      //     secure: true,
+      //     domain: '.vercel.app',
+      //   })
+      //   .cookie('token', userToken, {
+      //     expires: expiryDate,
+      //     httpOnly: true,
+      //     signed: true,
+      //     sameSite: 'none',
+      //     secure: true,
+      //     domain: '.vercel.app',
+      //   })
+      res.status(200).json({ isLogin: true, token: userToken });
     } catch (error) {
       console.error(error);
     }
