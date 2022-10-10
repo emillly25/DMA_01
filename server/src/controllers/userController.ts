@@ -49,7 +49,7 @@ class UserController {
       //     secure: true,
       //     domain: '.vercel.app',
       //   })
-      res.status(200).json({ isLogin: true, token: userToken });
+      res.status(200).json({ token: userToken });
     } catch (error) {
       console.error(error);
     }
