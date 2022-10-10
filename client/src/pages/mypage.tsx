@@ -16,7 +16,6 @@ export default function MyPage() {
   const router = useRouter()
   async function getUserData() {
     const res = await api.get('/user')
-    console.log(res)
     setUserData(res.data)
   }
 
@@ -27,7 +26,6 @@ export default function MyPage() {
   async function logout() {
     if (confirm('로그아웃 하시겠습니까?')) {
       await api.get('/auth/logout')
-      sessionStorage.removeItem('isLogin')
       sessionStorage.removeItem('token')
       router.push('/')
     }

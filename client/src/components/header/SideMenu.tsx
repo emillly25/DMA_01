@@ -10,16 +10,19 @@ import EngLogo from '../../assets/engLogo.png'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import * as api from '../../pages/api/api'
+import { useRouter } from 'next/router'
 
 export const SideMenu = () => {
+  const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const [isLogin, setIsLogin] = useState(false)
 
   useEffect(() => {
-    const result = sessionStorage.getItem('isLogin')
-    const convertedBool = result === 'true'
-    setIsLogin(convertedBool)
-  }, [isLogin])
+    const userToken = sessionStorage.getItem('token')
+    if (userToken) {
+      setIsLogin(true)
+    }
+  }, [])
 
   function sideMenuController() {
     setIsOpen((cur) => !cur)
@@ -27,10 +30,10 @@ export const SideMenu = () => {
   async function logout() {
     if (confirm('로그아웃 하시겠습니까?')) {
       await api.get('/auth/logout')
-      sessionStorage.removeItem('isLogin')
       sessionStorage.removeItem('token')
       setIsLogin(false)
       setIsOpen(false)
+      router.push('/')
     }
   }
   return (

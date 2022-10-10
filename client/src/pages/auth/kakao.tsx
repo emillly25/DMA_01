@@ -8,15 +8,15 @@ export default function SocialLogin() {
   useEffect(() => {
     if (code) {
       login(code)
-      router.push('/')
     }
   }, [code])
 
   async function login(code: string | string[]) {
     try {
       const res = await api.get('/auth/kakao', code)
-      sessionStorage.setItem('token', res.data.token)
-      sessionStorage.setItem('isLogin', res.data.isLogin)
+      console.log(res)
+      await sessionStorage.setItem('token', res.data.token)
+      router.push('/')
     } catch (error) {
       console.error(error)
     }
