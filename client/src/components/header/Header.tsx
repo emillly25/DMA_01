@@ -10,14 +10,11 @@ export const Header = () => {
   const [isLogin, setIsLogin] = useState(false)
 
   useEffect(() => {
-    const result = sessionStorage.getItem('isLogin')
-    const convertedBool = result === 'true'
-    setIsLogin(convertedBool)
-  }, [isLogin])
-
-  // useEffect(() => {
-  //   setIsLogin(i)
-  // }, [isLogin])
+    const userToken = sessionStorage.getItem('token')
+    if (userToken) {
+      setIsLogin(true)
+    }
+  }, [])
 
   return (
     <header className="container mx-auto relative w-screen h-[80px] bg-slate-100 text-gray-500 ">
@@ -44,7 +41,7 @@ export const Header = () => {
         ) : (
           <Link href="/mypage">
             <a className="border-solid border-2 border-slate-400 px-2 py-1 rounded-full ">
-              <FontAwesomeIcon icon={faUser} className="text-xl text-black" />
+              MY
             </a>
           </Link>
         )}
