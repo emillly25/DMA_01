@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import * as api from '../api/api'
+import Loading from '../../components/Loading'
 export default function SocialLogin() {
   const router = useRouter()
   const { code } = router.query
@@ -22,5 +23,9 @@ export default function SocialLogin() {
     }
   }
 
-  return <>로그인소셜</>
+  return (
+    <>
+      <Loading />
+    </>
+  )
 }
