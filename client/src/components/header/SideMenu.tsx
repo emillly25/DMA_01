@@ -139,7 +139,9 @@ export const SideMenu = () => {
           <li className="mt-8 mb-4">DMA 소개</li>
           <li className="my-4">교육과정</li>
           <li className="my-4">입학안내</li>
-          <li className="my-4">DMA 소식</li>
+          <Link href="/notice">
+            <li className="my-4">DMA 소식</li>
+          </Link>
           <Link href="/reservation">
             <li className="my-4">상담예약</li>
           </Link>
