@@ -28,7 +28,9 @@ export const Header = () => {
         <a className="mr-5 hover:text-gray-900">DMA 소개</a>
         <a className="mr-5 hover:text-gray-900">교육과정</a>
         <a className="mr-5 hover:text-gray-900">입학안내</a>
-        <a className="mr-5 hover:text-gray-900">DMA 소식</a>
+        <Link href="/notice">
+          <a className="mr-5 hover:text-gray-900">DMA 소식</a>
+        </Link>
         <Link href="/reservation">
           <a className="mr-5 hover:text-gray-900">상담예약</a>
         </Link>
