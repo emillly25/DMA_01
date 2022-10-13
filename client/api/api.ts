@@ -6,7 +6,10 @@ async function get(apiUrl: string, code?: string | string[]) {
     {
       withCredentials: true,
       headers: {
-        Authorization: sessionStorage.getItem('token'),
+        Authorization:
+          typeof window !== 'undefined'
+            ? sessionStorage.getItem('token')
+            : null,
       },
       params: { code: code },
     },

@@ -1,5 +1,5 @@
 import Layout from '../components/Layout'
-import * as api from '../pages/api/api'
+import * as api from '../../api/api'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
