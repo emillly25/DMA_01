@@ -6,20 +6,40 @@ import {
   faAnglesLeft,
   faAngleLeft,
 } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import * as api from '../../../api/api'
+import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query'
+
+export async function getNotices(page) {
+  const res = await api.get(`/admin/notice?page=${page}`)
+  const data = await res.data
+  return data
+}
 
 export async function getServerSideProps(context) {
-  const res = await api.get(`/admin/notice?page=${context.query.page}`)
-  const data = res.data
+  const queryClient = new QueryClient()
+  const nextPage = Number(context.query.page)
+  await queryClient.prefetchQuery(['notices', nextPage], () =>
+    getNotices(nextPage),
+  )
 
   return {
-    props: { data },
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
   }
 }
 
-export default function Notice({ data }) {
+export default function Notice(props) {
+  const { isLoading, data } = useQuery(
+    ['notices', props.dehydratedState.queries[0].state.data.currentPage],
+    () => getNotices(data.currentPage),
+    {
+      initialData: props.dehydratedState.queries[0].state.data,
+    },
+  )
+
   const router = useRouter()
   const [currentPage, setCurrentPage] = useState(1)
 
@@ -46,12 +66,15 @@ export default function Notice({ data }) {
     return pages
   }
 
+  if (isLoading) {
+    return <h1>Loading...</h1>
+  }
   return (
     <Layout>
       <div className="container mx-auto ">
         <div className="flex justify-center">
           <h1 className="text-center text-xl md:text-2xl font-bold w-[40%] my-[30px] p-4 border-solid border-y-2 border-slate-500">
-            DMA 소식
+            DMA NOTICE
           </h1>
         </div>
 
@@ -63,13 +86,13 @@ export default function Notice({ data }) {
                   No
                 </th>
                 <th scope="col" className="w-[60%] py-3 px-6">
-                  제목
+                  TITLE
                 </th>
                 <th
                   scope="col"
                   className="py-3 px-6 text-center hidden sm:block"
                 >
-                  작성일자
+                  DATE
                 </th>
               </tr>
             </thead>
