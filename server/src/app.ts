@@ -3,6 +3,7 @@ import cors from 'cors';
 import 'dotenv/config';
 import { userRouter } from './routers/userRouter';
 import { loginRouter } from './routers/loginRouter';
+import { adminRouter } from './routers/adminRouter';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 
@@ -35,6 +36,7 @@ app.get('/', (req: Request, res: Response, next: NextFunction) => {
 });
 app.use('/user', userRouter);
 app.use('/auth', loginRouter);
+app.use('/admin', adminRouter);
 
 app.listen(PORT, () => {
   console.log(`정상적으로 서버가 연결되었습니다. http://localhost:${PORT}`);
