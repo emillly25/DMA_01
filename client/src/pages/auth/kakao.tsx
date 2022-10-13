@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import * as api from '../api/api'
+import * as api from '../../../api/api'
 import Loading from '../../components/Loading'
 export default function SocialLogin() {
   const router = useRouter()

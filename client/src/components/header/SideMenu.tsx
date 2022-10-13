@@ -9,7 +9,7 @@ import Image from 'next/image'
 import EngLogo from '../../assets/engLogo.png'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import * as api from '../../pages/api/api'
+import * as api from '../../../api/api'
 import { useRouter } from 'next/router'
 
 export const SideMenu = () => {

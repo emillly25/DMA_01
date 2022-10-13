@@ -1,4 +1,4 @@
-import Layout from '../components/Layout'
+import Layout from '../../components/Layout'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faAnglesRight,
@@ -6,43 +6,22 @@ import {
   faAnglesLeft,
   faAngleLeft,
 } from '@fortawesome/free-solid-svg-icons'
-import { useEffect, useState } from 'react'
-import * as api from '../pages/api/api'
-import { resourceLimits } from 'worker_threads'
+import { useState } from 'react'
+import { useRouter } from 'next/router'
+import * as api from '../../../api/api'
 
-interface NoticeData {
-  _id: string
-  title: string
-  createdAt: string
-}
+export async function getServerSideProps(context) {
+  const res = await api.get(`/admin/notice?page=${context.query.page}`)
+  const data = res.data
 
-interface NoticeType {
-  notices: NoticeData[]
-  currentPage: number
-  startPage: number
-  endPage: number
-  maxNotice: number
-  totalPage: number
-}
-
-export default function Notice() {
-  const [data, setData] = useState<NoticeType | null>(null)
-  const [currentPage, setCurrentPage] = useState(1)
-
-  // useEffect(() => {
-  //   getNotices()
-  // }, [])
-
-  useEffect(() => {
-    getNotices(currentPage)
-  }, [currentPage])
-
-  async function getNotices(currentPage: number): Promise<NoticeType> {
-    const res = await api.get(`/admin/notice?page=${currentPage}`)
-    setData(res.data)
-    console.log(res.data)
-    return res.data
+  return {
+    props: { data },
   }
+}
+
+export default function Notice({ data }) {
+  const router = useRouter()
+  const [currentPage, setCurrentPage] = useState(1)
 
   function pageBtnCreator() {
     const pages = []
@@ -54,7 +33,10 @@ export default function Notice() {
               i === currentPage ? 'text-black' : 'text-slate-400'
             }`}
             key={i}
-            onClick={() => setCurrentPage(i)}
+            onClick={() => {
+              setCurrentPage(i)
+              router.push(`?page=${i}`)
+            }}
           >
             {i}
           </button>,
@@ -126,6 +108,13 @@ export default function Notice() {
                       return jumpPage
                     }
                   })
+                  router.push(
+                    `?page=${
+                      data.maxNotice *
+                        (Math.floor(currentPage / data.maxNotice) - 1) +
+                      1
+                    }`,
+                  )
                 }}
               >
                 <FontAwesomeIcon icon={faAnglesLeft} />
@@ -135,6 +124,7 @@ export default function Notice() {
                 disabled={currentPage <= 1}
                 onClick={() => {
                   setCurrentPage((cur) => cur - 1)
+                  router.push(`?page=${currentPage - 1}`)
                 }}
               >
                 <FontAwesomeIcon icon={faAngleLeft} />
@@ -147,13 +137,16 @@ export default function Notice() {
                 disabled={data && currentPage >= data.totalPage}
                 onClick={() => {
                   setCurrentPage((cur) => cur + 1)
+                  router.push(`?page=${currentPage + 1}`)
                 }}
               >
                 <FontAwesomeIcon icon={faAngleRight} />
               </button>
               <button
                 className="inline-block ml-3 disabled:text-slate-200"
-                disabled={data && data.totalPage - currentPage < data.maxNotice}
+                disabled={
+                  data && data.totalPage - currentPage < data.maxNotice - 1
+                }
                 onClick={() => {
                   setCurrentPage((cur) => {
                     if (data) {
@@ -162,6 +155,12 @@ export default function Notice() {
                       return jumpPage
                     }
                   })
+                  router.push(
+                    `?page=${
+                      Math.ceil(currentPage / data.maxNotice) * data.maxNotice +
+                      1
+                    }`,
+                  )
                 }}
               >
                 <FontAwesomeIcon icon={faAnglesRight} />
