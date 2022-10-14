@@ -11,13 +11,22 @@ interface NoticeData {
 const Notice = model<NoticeData>('notice', NoticeSchema);
 
 export class NoticeModel {
-  async findAllNotice(hideNotice: number, maxNotice: number): Promise<any> {
+  async findAllNoticeByPage(
+    hideNotice: number,
+    maxNotice: number,
+  ): Promise<any> {
     // 나중에 sort 정렬 추가해야함(생성순)
     return await Notice.find().skip(hideNotice).limit(maxNotice);
   }
   async countAllNotice(): Promise<number> {
     const notices = await Notice.find();
     return notices.length;
+  }
+  async findOneById(id: any): Promise<any> {
+    return await Notice.findOne({ id });
+  }
+  async findAllNotice(): Promise<any> {
+    return await Notice.find();
   }
 }
 
