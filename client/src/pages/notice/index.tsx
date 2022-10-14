@@ -8,8 +8,14 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import * as api from '../../../api/api'
-import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query'
+import {
+  dehydrate,
+  QueryClient,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query'
 
 export async function getNotices(page) {
   const res = await api.get(`/admin/notice?page=${page}`)
@@ -17,31 +23,47 @@ export async function getNotices(page) {
   return data
 }
 
-export async function getServerSideProps(context) {
-  const queryClient = new QueryClient()
-  const nextPage = Number(context.query.page)
-  await queryClient.prefetchQuery(['notices', nextPage], () =>
-    getNotices(nextPage),
-  )
-
+export async function getStaticProps() {
+  const res = await api.get('/admin/notice?page=1')
+  const data = await res.data
   return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
+    props: { data },
   }
 }
 
 export default function Notice(props) {
+  const router = useRouter()
+  const queryClient = useQueryClient()
+  const [currentPage, setCurrentPage] = useState(1)
   const { isLoading, data } = useQuery(
-    ['notices', props.dehydratedState.queries[0].state.data.currentPage],
-    () => getNotices(data.currentPage),
+    ['notices', currentPage],
+    () => getData(currentPage),
     {
-      initialData: props.dehydratedState.queries[0].state.data,
+      initialData: props.data,
+      keepPreviousData: true,
     },
   )
 
-  const router = useRouter()
-  const [currentPage, setCurrentPage] = useState(1)
+  async function getData(page) {
+    return await getNotices(page)
+  }
+
+  useEffect(() => {
+    //새로고침되면 page1로
+    if (currentPage !== 1) {
+      return
+    } else if (currentPage === 1) {
+      router.push('/notice?page=1')
+      return
+    }
+  }, [currentPage])
+
+  useEffect(() => {
+    if (currentPage < props.data.totalPage) {
+      const nextPage = currentPage + 1
+      queryClient.prefetchQuery(['notices', nextPage], () => getData(nextPage))
+    }
+  }, [currentPage, queryClient])
 
   function pageBtnCreator() {
     const pages = []
@@ -54,8 +76,8 @@ export default function Notice(props) {
             }`}
             key={i}
             onClick={() => {
-              setCurrentPage(i)
               router.push(`?page=${i}`)
+              setCurrentPage(i)
             }}
           >
             {i}
@@ -107,7 +129,17 @@ export default function Notice(props) {
                       >
                         {data && data.maxNotice * (currentPage - 1) + (idx + 1)}
                       </th>
-                      <td className="py-4 px-6">{el.title}</td>
+
+                      <td className="py-4 px-6">
+                        <span
+                          onClick={() => {
+                            router.push(`/notice/${el._id}`)
+                          }}
+                        >
+                          {el.title}
+                        </span>
+                      </td>
+
                       <td className="py-4 px-6 text-center hidden sm:block">
                         {el.createdAt}
                       </td>
@@ -122,6 +154,13 @@ export default function Notice(props) {
                 className="inline-block mr-3 disabled:text-slate-200"
                 disabled={data && currentPage <= data.maxNotice}
                 onClick={() => {
+                  router.push(
+                    `?page=${
+                      data.maxNotice *
+                        (Math.floor(currentPage / data.maxNotice) - 1) +
+                      1
+                    }`,
+                  )
                   setCurrentPage((cur) => {
                     if (data) {
                       const jumpPage =
@@ -131,13 +170,6 @@ export default function Notice(props) {
                       return jumpPage
                     }
                   })
-                  router.push(
-                    `?page=${
-                      data.maxNotice *
-                        (Math.floor(currentPage / data.maxNotice) - 1) +
-                      1
-                    }`,
-                  )
                 }}
               >
                 <FontAwesomeIcon icon={faAnglesLeft} />
@@ -146,8 +178,8 @@ export default function Notice(props) {
                 className="inline-block disabled:text-slate-200"
                 disabled={currentPage <= 1}
                 onClick={() => {
-                  setCurrentPage((cur) => cur - 1)
                   router.push(`?page=${currentPage - 1}`)
+                  setCurrentPage((cur) => cur - 1)
                 }}
               >
                 <FontAwesomeIcon icon={faAngleLeft} />
@@ -159,8 +191,8 @@ export default function Notice(props) {
                 className="inline-block disabled:text-slate-200"
                 disabled={data && currentPage >= data.totalPage}
                 onClick={() => {
-                  setCurrentPage((cur) => cur + 1)
                   router.push(`?page=${currentPage + 1}`)
+                  setCurrentPage((cur) => cur + 1)
                 }}
               >
                 <FontAwesomeIcon icon={faAngleRight} />
@@ -171,6 +203,12 @@ export default function Notice(props) {
                   data && data.totalPage - currentPage < data.maxNotice - 1
                 }
                 onClick={() => {
+                  router.push(
+                    `?page=${
+                      Math.ceil(currentPage / data.maxNotice) * data.maxNotice +
+                      1
+                    }`,
+                  )
                   setCurrentPage((cur) => {
                     if (data) {
                       const jumpPage =
@@ -178,12 +216,6 @@ export default function Notice(props) {
                       return jumpPage
                     }
                   })
-                  router.push(
-                    `?page=${
-                      Math.ceil(currentPage / data.maxNotice) * data.maxNotice +
-                      1
-                    }`,
-                  )
                 }}
               >
                 <FontAwesomeIcon icon={faAnglesRight} />
