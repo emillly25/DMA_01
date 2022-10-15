@@ -25,7 +25,7 @@ export default function LoginBox({ title, isLogin }: LoginBoxProps) {
           <p className="text-center text-sm py-3 sm:text-base md:text-xl">
             아직 회원이 아니신가요?
             <Link href="/register">
-              <a className="text-gray-400 inline-block pl-3 "> 회원가입</a>
+              <a className="text-gray-400 inline-block pl-3"> 회원가입</a>
             </Link>
           </p>
         )}
