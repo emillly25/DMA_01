@@ -21,6 +21,7 @@ Service Link: https://dma-01.vercel.app/
 ## 🔗2. 현재까지 구현한 서비스 (~ing)
 
 - 카카오 소셜 로그인 구현
+- 공지게시글 페이지네이션
 - tailwindcss 이용한 반응형 사이트 구현
 - 카카오 지도 api를 통한 위치 구현
 - 상담예약 서비스
