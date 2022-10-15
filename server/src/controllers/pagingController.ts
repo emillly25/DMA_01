@@ -6,6 +6,7 @@ class NoticeController {
   async findOneNotice(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
+      console.log('아이디', id);
       const result = await noticeModel.findOneById(id);
       res.status(200).json(result);
     } catch (error) {

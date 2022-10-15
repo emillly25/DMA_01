@@ -23,7 +23,7 @@ export class NoticeModel {
     return notices.length;
   }
   async findOneById(id: any): Promise<any> {
-    return await Notice.findOne({ id });
+    return await Notice.findOne({ _id: id });
   }
   async findAllNotice(): Promise<any> {
     return await Notice.find();
