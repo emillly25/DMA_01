@@ -68,7 +68,7 @@ export const SideMenu = () => {
           <span onClick={sideMenuController}>
             <FontAwesomeIcon
               icon={faX}
-              className="text-slate-600 text-3xl mr-4 "
+              className="text-slate-600 text-3xl mr-4"
             />
           </span>
         </div>

@@ -66,12 +66,12 @@ export default function ReservationForm() {
       <h2 className="font-bold text-lg text-center mb-3 md:text-2xl">
         상담예약
       </h2>
-      <div className="w-full flex flex-col items-start ">
-        <div className="mx-auto pr-2   ">
-          <div className="flex items-center py-2   ">
+      <div className="w-full flex flex-col items-start">
+        <div className="mx-auto pr-2">
+          <div className="flex items-center py-2">
             <label
               htmlFor="name"
-              className="text-sm text-left text-gray-700 font-bold p-2 w-[120px] md:w-[150px] md:text-lg  "
+              className="text-sm text-left text-gray-700 font-bold p-2 w-[120px] md:w-[150px] md:text-lg"
             >
               학생 이름
             </label>
@@ -80,13 +80,13 @@ export default function ReservationForm() {
               name="name"
               required
               onChange={onChangeHandler}
-              className="w-[200px] rounded-md border-2 border-slate-200 shadow-sm  md:w-[400px] pl-2 py-1 md:py-2  "
+              className="w-[200px] rounded-md border-2 border-slate-200 shadow-sm md:w-[400px] pl-2 py-1 md:py-2"
             />
           </div>
           <div className="flex items-center py-2">
             <label
               htmlFor="phone"
-              className="text-sm text-left text-gray-700 font-bold p-2 w-[120px] md:w-[150px]  md:text-lg "
+              className="text-sm text-left text-gray-700 font-bold p-2 w-[120px] md:w-[150px] md:text-lg"
             >
               부모님 연락처
             </label>
@@ -96,13 +96,13 @@ export default function ReservationForm() {
               placeholder=" - 없이 입력해주세요"
               required
               onChange={onChangeHandler}
-              className="w-[200px]  rounded-md border-2 border-slate-200 shadow-sm sm:text-sm pl-2 py-1  md:w-[400px] md:py-2 "
+              className="w-[200px] rounded-md border-2 border-slate-200 shadow-sm sm:text-sm pl-2 py-1  md:w-[400px] md:py-2"
             />
           </div>
-          <div className="flex items-center py-2 ">
+          <div className="flex items-center py-2">
             <label
               htmlFor="date"
-              className="text-sm text-left text-gray-700 font-bold p-2 w-[120px]  md:w-[150px]  md:text-lg  "
+              className="text-sm text-left text-gray-700 font-bold p-2 w-[120px] md:w-[150px] md:text-lg"
             >
               희망날짜
             </label>
@@ -111,7 +111,7 @@ export default function ReservationForm() {
               name="date"
               required
               onChange={onChangeHandler}
-              className="w-[200px] rounded-md border-2 border-slate-200 shadow-sm  sm:text-sm pl-2 py-1  md:w-[400px] md:py-2"
+              className="w-[200px] rounded-md border-2 border-slate-200 shadow-sm sm:text-sm pl-2 py-1  md:w-[400px] md:py-2"
             />
           </div>
 
@@ -119,7 +119,7 @@ export default function ReservationForm() {
             <div className="flex items-center py-2 relative">
               <label
                 htmlFor="time"
-                className="text-sm text-left text-gray-700 font-bold p-2 w-[120px]  md:w-[150px] md:text-lg  "
+                className="text-sm text-left text-gray-700 font-bold p-2 w-[120px] md:w-[150px] md:text-lg"
               >
                 희망시간
               </label>
@@ -128,7 +128,7 @@ export default function ReservationForm() {
                 name="time"
                 required
                 onChange={onChangeHandler}
-                className="w-[200px] rounded-md border-2 border-slate-200 shadow-sm  sm:text-sm pl-2 py-1 md:w-[400px] md:py-2"
+                className="w-[200px] rounded-md border-2 border-slate-200 shadow-sm sm:text-sm pl-2 py-1 md:w-[400px] md:py-2"
               />
               <span
                 className={`text-sm absolute right-2 cursor-pointer  md:right-3 ${
@@ -142,10 +142,10 @@ export default function ReservationForm() {
               </span>
             </div>
           ) : (
-            <div className="flex items-center py-2 ">
+            <div className="flex items-center py-2">
               <label
                 htmlFor="time"
-                className="text-sm text-left text-gray-700 font-bold p-2 w-[120px]  md:w-[150px] md:text-lg  "
+                className="text-sm text-left text-gray-700 font-bold p-2 w-[120px] md:w-[150px] md:text-lg"
               >
                 희망시간
               </label>
@@ -153,7 +153,7 @@ export default function ReservationForm() {
                 name="time"
                 required
                 onChange={hopeTimeSelector}
-                className="w-[200px] rounded-md border-2 border-slate-200 shadow-sm  sm:text-sm  pl-2 py-1  md:w-[400px] md:py-2"
+                className="w-[200px] rounded-md border-2 border-slate-200 shadow-sm sm:text-sm  pl-2 py-1  md:w-[400px] md:py-2"
               >
                 <option>14시</option>
                 <option>14시 30분</option>
@@ -170,7 +170,7 @@ export default function ReservationForm() {
           <div className="flex items-center py-2 ">
             <label
               htmlFor="school"
-              className="text-sm text-left text-gray-700 font-bold p-2 w-[120px]  md:w-[150px]  md:text-lg  "
+              className="text-sm text-left text-gray-700 font-bold p-2 w-[120px] md:w-[150px] md:text-lg"
             >
               학교
             </label>
@@ -179,14 +179,14 @@ export default function ReservationForm() {
               name="school"
               required
               onChange={onChangeHandler}
-              className="w-[200px] rounded-md border-2 border-slate-200 shadow-sm  sm:text-sm pl-2 py-1  md:w-[400px] md:py-2"
+              className="w-[200px] rounded-md border-2 border-slate-200 shadow-sm sm:text-sm pl-2 py-1  md:w-[400px] md:py-2"
             />
           </div>
 
           <div className="flex items-center py-2 ">
             <label
               htmlFor="grade"
-              className="text-sm text-left text-gray-700 font-bold p-2 w-[120px]  md:w-[150px]  md:text-lg  "
+              className="text-sm text-left text-gray-700 font-bold p-2 w-[120px] md:w-[150px] md:text-lg"
             >
               학년
             </label>
@@ -194,7 +194,7 @@ export default function ReservationForm() {
               name="grade"
               required
               onChange={onChangeHandler}
-              className="w-[200px] rounded-md border-2 border-slate-200 shadow-sm  sm:text-sm  pl-2 py-1  md:w-[400px] md:py-2"
+              className="w-[200px] rounded-md border-2 border-slate-200 shadow-sm sm:text-sm pl-2 py-1  md:w-[400px] md:py-2"
             >
               <option>초 3</option>
               <option>초 4</option>
@@ -212,7 +212,7 @@ export default function ReservationForm() {
           <div className="flex items-center py-2 ">
             <label
               htmlFor="question"
-              className="text-sm text-left text-gray-700 font-bold p-2 w-[120px]   md:w-[150px]  md:text-lg "
+              className="text-sm text-left text-gray-700 font-bold p-2 w-[120px] md:w-[150px] md:text-lg"
             >
               문의사항
             </label>

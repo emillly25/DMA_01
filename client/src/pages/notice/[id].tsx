@@ -7,10 +7,8 @@ export default function NoticeDetail({ data }) {
 
 export async function getStaticProps(context) {
   const { id } = context.params
-  console.log('id', id)
   const res = await api.get(`/admin/notice/${id}`)
   const data = await res.data
-  console.log('data', data)
 
   return {
     props: { data },

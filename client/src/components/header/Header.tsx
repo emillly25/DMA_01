@@ -17,7 +17,7 @@ export const Header = () => {
   }, [])
 
   return (
-    <header className="container mx-auto relative w-screen h-[80px] bg-slate-100 text-gray-500 ">
+    <header className="container mx-auto relative w-screen h-[80px] bg-slate-100 text-gray-500">
       <Link href="/">
         <a className="absolute left-2 top-2">
           <Image src={Logo} width={200} height={70} alt="mainLogo" />
@@ -36,13 +36,13 @@ export const Header = () => {
         </Link>
         {!isLogin ? (
           <Link href="/login">
-            <a className="border-solid border-2 border-slate-400 px-2 py-1 rounded-full ">
+            <a className="border-solid border-2 border-slate-400 px-2 py-1 rounded-full">
               <FontAwesomeIcon icon={faUser} className="text-xl text-black" />
             </a>
           </Link>
         ) : (
           <Link href="/mypage">
-            <a className="border-solid border-2 border-slate-400 px-2 py-1 rounded-full ">
+            <a className="border-solid border-2 border-slate-400 px-2 py-1 rounded-full">
               MY
             </a>
           </Link>
