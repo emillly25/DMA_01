@@ -36,7 +36,7 @@ export default function NoticeDetail({ data }) {
           </p>
 
           <div className="mx-[5%] flex flex-col items-center">
-            {data.imgURL.length !== 0 ? (
+            {data && data.imgURL.length !== 0 ? (
               data.imgURL.map((el) => {
                 return (
                   <div key={el} className="relative w-[600px] h-[600px] mb-5">
