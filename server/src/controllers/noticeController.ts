@@ -6,8 +6,12 @@ class NoticeController {
   async findOneNotice(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
-      console.log('아이디', id);
       const result = await noticeModel.findOneById(id);
+      const { _id, title, createdAt } = result;
+      if (result.imgURL.length === 0) {
+        const convertResult = { _id, title, createdAt, imgURL: null };
+        return res.status(200).json(convertResult);
+      }
       res.status(200).json(result);
     } catch (error) {
       console.error(error);

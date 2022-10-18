@@ -96,7 +96,7 @@ export default function Notice(props) {
       <div className="container mx-auto ">
         <div className="flex justify-center">
           <h1 className="text-center text-xl md:text-2xl font-bold w-[40%] my-[30px] p-4 border-solid border-y-2 border-slate-500">
-            DMA NOTICE
+            DMA 소식
           </h1>
         </div>
 
@@ -132,6 +132,7 @@ export default function Notice(props) {
 
                       <td className="py-4 px-6">
                         <span
+                          className="cursor-pointer"
                           onClick={() => {
                             router.push(`/notice/${el._id}`)
                           }}

@@ -15,6 +15,9 @@ const NoticeSchema = new Schema(
     createdAt: {
       type: String,
     },
+    imgURL: {
+      type: [],
+    },
   },
   {
     collection: 'notice',

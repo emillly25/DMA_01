@@ -6,6 +6,7 @@ interface NoticeData {
   title?: string;
   content?: string;
   createdAt?: string;
+  imgURL?: string[];
 }
 
 const Notice = model<NoticeData>('notice', NoticeSchema);
