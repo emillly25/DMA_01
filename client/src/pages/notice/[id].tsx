@@ -35,13 +35,14 @@ export default function NoticeDetail({ data }) {
           </p>
 
           <div className="mx-[5%] flex flex-col items-center">
-            {data.imgURL.map((el) => {
-              return (
-                <div key={el} className="relative w-[600px] h-[600px] mb-5">
-                  <Image alt="notice" src={el} layout="fill" />
-                </div>
-              )
-            })}
+            {data &&
+              data.imgURL.map((el) => {
+                return (
+                  <div key={el} className="relative w-[600px] h-[600px] mb-5">
+                    <Image alt="notice" src={el} layout="fill" />
+                  </div>
+                )
+              })}
           </div>
         </article>
       </div>
