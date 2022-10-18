@@ -6,6 +6,7 @@ import { loginRouter } from './routers/loginRouter';
 import { adminRouter } from './routers/adminRouter';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+import { reservationRouter } from './routers/reservationRouter';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -37,6 +38,7 @@ app.get('/', (req: Request, res: Response, next: NextFunction) => {
 app.use('/user', userRouter);
 app.use('/auth', loginRouter);
 app.use('/admin', adminRouter);
+app.use('/reservation', reservationRouter);
 
 app.listen(PORT, () => {
   console.log(`정상적으로 서버가 연결되었습니다. http://localhost:${PORT}`);
