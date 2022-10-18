@@ -36,17 +36,15 @@ export default function NoticeDetail({ data }) {
           </p>
 
           <div className="mx-[5%] flex flex-col items-center">
-            {data && data.imgURL.length !== 0 ? (
+            {data &&
+              data.imgURL &&
               data.imgURL.map((el) => {
                 return (
                   <div key={el} className="relative w-[600px] h-[600px] mb-5">
                     <Image alt="notice" src={el} layout="fill" />
                   </div>
                 )
-              })
-            ) : (
-              <div>내용무</div>
-            )}
+              })}
           </div>
         </article>
       </div>
