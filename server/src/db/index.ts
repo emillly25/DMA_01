@@ -15,3 +15,4 @@ db.on('error', (error) =>
 
 export * from './model/userModel';
 export * from './model/noticeModel';
+export * from './model/reservationModel';

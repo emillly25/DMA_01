@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import * as api from '../../../api/api'
+import { useMutation } from '@tanstack/react-query'
 
 interface ReservationDataType {
   name: string
@@ -18,11 +20,19 @@ export default function ReservationForm() {
     name: '',
     phone: '',
     date: '',
-    time: '',
+    time: '14시',
     school: '',
     grade: '초3',
   })
+  async function postData(reservationData: ReservationDataType) {
+    await api.post('/reservation', reservationData)
+  }
 
+  const postMutation = useMutation(postData, {
+    onSuccess: () => {
+      alert('예약 완료! 담당자 확인 후 연락드리겠습니다.')
+    },
+  })
   function onChangeHandler(e) {
     setReservationData((cur) => {
       const newData = { ...cur }
@@ -52,12 +62,10 @@ export default function ReservationForm() {
     } else if (!reservationData.school) {
       return alert('학교를 입력해주세요!')
     }
-    alert('예약완료!')
+    postMutation.mutate(reservationData)
   }
-
   function submitHandler(e) {
     e.preventDefault()
-    console.log(reservationData)
     formValidation()
   }
 
