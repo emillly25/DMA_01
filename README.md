@@ -1,6 +1,7 @@
 # 📚 DMA 반응형 웹 어플리케이션
 
-프로젝트 작업중 (초기) <br>
+[![deploy](https://github.com/emillly25/DMA_01/actions/workflows/serverDeploy.yml/badge.svg?branch=main)](https://github.com/emillly25/DMA_01/actions/workflows/serverDeploy.yml) <br>
+프로젝트 작업중 (초기)
 Service Link: https://dma-01.vercel.app/
 
 ## 🔗1. 서비스 소개
