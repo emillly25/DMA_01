@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import * as api from '../../../api/api'
 
 interface ReservationDataType {
   name: string
@@ -39,6 +40,9 @@ export default function ReservationForm() {
       onChangeHandler(e)
     }
   }
+  async function postData() {
+    await api.post('/reservation', reservationData)
+  }
 
   function formValidation() {
     if (!reservationData.name) {
@@ -52,12 +56,11 @@ export default function ReservationForm() {
     } else if (!reservationData.school) {
       return alert('학교를 입력해주세요!')
     }
-    alert('예약완료!')
+    postData()
+    alert('예약 완료! 담당자 확인 후 연락드리겠습니다.')
   }
-
   function submitHandler(e) {
     e.preventDefault()
-    console.log(reservationData)
     formValidation()
   }
 
