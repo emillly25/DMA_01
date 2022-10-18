@@ -31,6 +31,7 @@ export default function ReservationForm() {
   const postMutation = useMutation(postData, {
     onSuccess: () => {
       alert('예약 완료! 담당자 확인 후 연락드리겠습니다.')
+      console.log('되고있니...?')
     },
   })
   function onChangeHandler(e) {
