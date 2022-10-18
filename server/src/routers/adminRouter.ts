@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { noticeController } from '../controllers/pagingController';
+import { noticeController } from '../controllers/noticeController';
 
 const adminRouter: Router = Router();
 
