@@ -7,11 +7,6 @@ class NoticeController {
     try {
       const { id } = req.params;
       const result = await noticeModel.findOneById(id);
-      const { _id, title, createdAt } = result;
-      if (result.imgURL.length === 0) {
-        const convertResult = { _id, title, createdAt, imgURL: null };
-        return res.status(200).json(convertResult);
-      }
       res.status(200).json(result);
     } catch (error) {
       console.error(error);
@@ -56,6 +51,23 @@ class NoticeController {
         totalPage,
       };
       res.status(200).json(pagingData);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  async create(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { title, content } = req.body;
+      const result = await noticeModel.createNotice({ title, content });
+      res.status(200).json(result);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  async uploadImg(req: Request, res: Response, next: NextFunction) {
+    try {
+      const file = req.file;
+      res.status(200).json(file);
     } catch (error) {
       console.error(error);
     }

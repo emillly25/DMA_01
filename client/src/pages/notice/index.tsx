@@ -16,18 +16,28 @@ import {
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query'
+import dayjs from 'dayjs'
 
 export async function getNotices(page) {
   const res = await api.get(`/admin/notice?page=${page}`)
   const data = await res.data
-  return data
+  const convertDateArr = data.notices.map((el) => {
+    return { ...el, createdAt: dayjs(el.createdAt).format('YYYY-MM-DD') }
+  })
+  const newData = { ...data, notices: convertDateArr }
+
+  return newData
 }
 
 export async function getStaticProps() {
   const res = await api.get('/admin/notice?page=1')
   const data = await res.data
+  const convertDateArr = data.notices.map((el) => {
+    return { ...el, createdAt: dayjs(el.createdAt).format('YYYY-MM-DD') }
+  })
+  const newData = { ...data, notices: convertDateArr }
   return {
-    props: { data },
+    props: { data: newData },
   }
 }
 

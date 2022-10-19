@@ -2,21 +2,12 @@ import mongoose, { Schema } from 'mongoose';
 
 const NoticeSchema = new Schema(
   {
-    noticeId: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-    },
     title: {
       type: String,
+      required: true,
     },
     content: {
       type: String,
-    },
-    createdAt: {
-      type: String,
-    },
-    imgURL: {
-      type: [],
     },
   },
   {

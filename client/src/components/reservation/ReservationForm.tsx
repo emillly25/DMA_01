@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import * as api from '../../../api/api'
 import { useMutation } from '@tanstack/react-query'
+import { useRouter } from 'next/router'
 
 interface ReservationDataType {
   name: string
@@ -15,6 +16,7 @@ interface ReservationDataType {
 }
 
 export default function ReservationForm() {
+  const router = useRouter()
   const [isHopeTime, setIsHopeTime] = useState(false)
   const [reservationData, setReservationData] = useState<ReservationDataType>({
     name: '',
@@ -31,6 +33,7 @@ export default function ReservationForm() {
   const postMutation = useMutation(postData, {
     onSuccess: () => {
       alert('예약 완료! 담당자 확인 후 연락드리겠습니다.')
+      router.push('/')
     },
   })
   function onChangeHandler(e) {
