@@ -30,29 +30,39 @@ export default function NoticeCreate() {
 
   async function submitHandler() {
     const posting = { title, content: data }
-    console.log('posting', posting)
-
     await api.post('/admin/notice', posting)
     router.push('/notice')
   }
 
   function imageHandler() {
+    //1. 이미지를 업로드할 input Element를 만들자.
     const input = document.createElement('input')
 
+    //2. input의 속성들을 설정하자
     input.setAttribute('type', 'file')
     input.setAttribute('accept', 'image/*')
+    input.setAttribute('class', 'hidden')
+
+    //3. body에 input을 추가하자
     document.body.appendChild(input)
+
+    //4. 툴에서 이미지가 클릭되면 input을 클릭하자
     input.click()
+
+    //5. 파일이 선택되면 사진을 서버로 보내자
     input.addEventListener('change', async () => {
       const file = input.files[0]
       const formData = new FormData()
       await formData.append('src', file)
+
       try {
+        //6. 사진을 서버로 보내면 서버가 사진을 S3에 저장하고 URL을 줌
         const res = await api.post('/admin/notice/img', formData)
         const url = res.data.location
+        //7. 텍스트 에디터에 커서위치에 사진을 넣자
         if (quillRef?.current) {
           const editor = quillRef.current.getEditor()
-          editor.root.innerHTML += `<img src=${url} /><br/>`
+          // editor.root.innerHTML += `<img src=${url} /><br/>`
           const range = editor.getSelection()
           editor.insertEmbed(range.index, 'image', url)
         }
@@ -93,7 +103,7 @@ export default function NoticeCreate() {
             CREATE
           </h1>
         </div>
-        <div className="flex flex-col items-center w-full px-3 mx-auto border-2 border-solid border-purple-400">
+        <div className="flex flex-col items-center w-full px-3 mx-auto">
           <div className="w-full flex items-center gap-2 my-3">
             <input
               name="title"

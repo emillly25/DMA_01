@@ -26,7 +26,7 @@ class NoticeController {
     try {
       const totalNotice = await noticeModel.countAllNotice();
       if (!totalNotice) {
-        throw new Error();
+        return res.status(200).json(null);
       }
       const {
         startPage,

@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['postfiles.pstatic.net'],
+    domains: ['dma-01.s3.ap-northeast-2.amazonaws.com'],
   },
 }
 
