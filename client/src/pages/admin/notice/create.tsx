@@ -24,7 +24,7 @@ const ReactQuill = dynamic(
 export default function NoticeCreate() {
   const [title, setTitle] = useState('')
   const [data, setData] = useState('')
-  const quillRef = useRef()
+  const quillRef = useRef<any>()
 
   async function submitHandler() {
     const posting = { title, content: data }
