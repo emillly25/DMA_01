@@ -46,10 +46,12 @@ export default function NoticeCreate() {
       try {
         const res = await api.post('/admin/notice/img', formData)
         const url = res.data.location
-        const editor = quillRef.current.getEditor()
-        editor.root.innerHTML += `<img src=${url} /><br/>`
-        const range = editor.getSelection()
-        editor.insertEmbed(range.index, 'image', url)
+        if (quillRef?.current) {
+          const editor = quillRef.current.getEditor()
+          editor.root.innerHTML += `<img src=${url} /><br/>`
+          const range = editor.getSelection()
+          editor.insertEmbed(range.index, 'image', url)
+        }
       } catch (error) {
         console.error(error)
       }
