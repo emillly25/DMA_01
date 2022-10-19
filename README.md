@@ -20,7 +20,8 @@ Service Link: https://dma-01.vercel.app/
   <br>
 
 ## 🔗2. 현재까지 구현한 서비스 (~ing)
-
+- github Actions 을 이용한 백엔드 배포 자동화(CI/CD)
+- react-quill 이용한 텍스트 에디터 기능 + AWS S3 이미지 관리
 - 카카오 소셜 로그인 구현
 - 공지게시글 페이지네이션
 - tailwindcss 이용한 반응형 사이트 구현
