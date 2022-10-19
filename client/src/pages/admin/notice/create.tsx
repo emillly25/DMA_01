@@ -5,6 +5,7 @@ import { useState, useEffect, useMemo, useRef, forwardRef } from 'react'
 import dynamic from 'next/dynamic'
 // import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
+import { useRouter } from 'next/router'
 
 // const QuillWrapper = dynamic(() => import('react-quill'), {
 //   ssr: false,
@@ -22,6 +23,7 @@ const ReactQuill = dynamic(
 )
 
 export default function NoticeCreate() {
+  const router = useRouter()
   const [title, setTitle] = useState('')
   const [data, setData] = useState('')
   const quillRef = useRef<any>()
@@ -29,7 +31,9 @@ export default function NoticeCreate() {
   async function submitHandler() {
     const posting = { title, content: data }
     console.log('posting', posting)
+
     await api.post('/admin/notice', posting)
+    router.push('/notice')
   }
 
   function imageHandler() {
