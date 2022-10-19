@@ -16,10 +16,13 @@
     "@tanstack/react-query": "^4.10.3",
     "@tanstack/react-query-devtools": "^4.11.0",
     "axios": "^0.27.2",
+    "dayjs": "^1.11.5",
     "dotenv": "^16.0.2",
     "next": "12.3.1",
     "react": "18.2.0",
+    "react-aws-s3": "^1.5.0",
     "react-dom": "18.2.0",
+    "react-quill": "^2.0.0",
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1"
   },

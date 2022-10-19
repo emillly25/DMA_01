@@ -1,13 +1,14 @@
 import { useRouter } from 'next/router'
 import * as api from '../../../api/api'
 import Layout from '../../components/Layout'
-import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
+import dayjs from 'dayjs'
 
 export default function NoticeDetail({ data }) {
-  console.log(data)
   const router = useRouter()
+  const date = dayjs(data.createdAt).format('YYYY-MM-DD')
+
   return (
     <Layout>
       <div className="container mx-auto">
@@ -32,20 +33,13 @@ export default function NoticeDetail({ data }) {
             {data.title}
           </h2>
           <p className="mx-[5%] pb-3 text-sm sm:text-lg text-slate-600 mb-10 border-solid border-b-[1px] border-slate-400">
-            {data.createdAt}
+            {date}
           </p>
 
-          <div className="mx-[5%] flex flex-col items-center">
-            {data &&
-              data.imgURL &&
-              data.imgURL.map((el) => {
-                return (
-                  <div key={el} className="relative w-[600px] h-[600px] mb-5">
-                    <Image alt="notice" src={el} layout="fill" />
-                  </div>
-                )
-              })}
-          </div>
+          <div
+            className="mx-[5%] flex flex-col items-center"
+            dangerouslySetInnerHTML={{ __html: data.content }}
+          ></div>
         </article>
       </div>
     </Layout>
