@@ -8,7 +8,7 @@ import dayjs from 'dayjs'
 export default function NoticeDetail({ data }) {
   const router = useRouter()
   const date = dayjs(data.createdAt).format('YYYY-MM-DD')
-
+  console.log('data', data)
   return (
     <Layout>
       <div className="container mx-auto">
@@ -37,7 +37,7 @@ export default function NoticeDetail({ data }) {
           </p>
 
           <div
-            className="mx-[5%] flex flex-col items-center"
+            className="mx-[5%] flex flex-col items-center border-2 border-solid border-orange-400"
             dangerouslySetInnerHTML={{ __html: data.content }}
           ></div>
         </article>
@@ -65,6 +65,6 @@ export async function getStaticPaths() {
   })
   return {
     paths: paths,
-    fallback: false,
+    fallback: 'blocking',
   }
 }
