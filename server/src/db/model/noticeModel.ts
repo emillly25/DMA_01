@@ -2,11 +2,9 @@ import { model } from 'mongoose';
 import { NoticeSchema } from '../schemas/noticeSchema';
 
 interface NoticeData {
-  noticeId: string;
-  title?: string;
-  content?: string;
+  title: string;
+  content: string;
   createdAt?: string;
-  imgURL?: string[];
 }
 
 const Notice = model<NoticeData>('notice', NoticeSchema);
@@ -28,6 +26,9 @@ export class NoticeModel {
   }
   async findAllNotice(): Promise<any> {
     return await Notice.find();
+  }
+  async createNotice(notice: NoticeData): Promise<any> {
+    return await Notice.create(notice);
   }
 }
 
