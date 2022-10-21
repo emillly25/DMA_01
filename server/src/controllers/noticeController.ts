@@ -72,6 +72,15 @@ class NoticeController {
       console.error(error);
     }
   }
+  async deleteNotice(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params;
+      const result = await noticeModel.deleteNotice(id);
+      res.status(200).json(result);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
 
 const noticeController = new NoticeController();
