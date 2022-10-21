@@ -12,5 +12,6 @@ adminRouter.post(
   upload.single('src'),
   noticeController.uploadImg,
 );
+adminRouter.delete('/notice/:id', noticeController.deleteNotice);
 
 export { adminRouter };

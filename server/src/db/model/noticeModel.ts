@@ -30,6 +30,9 @@ export class NoticeModel {
   async createNotice(notice: NoticeData): Promise<any> {
     return await Notice.create(notice);
   }
+  async deleteNotice(id: string): Promise<any> {
+    return await Notice.deleteOne({ _id: id });
+  }
 }
 
 const noticeModel = new NoticeModel();

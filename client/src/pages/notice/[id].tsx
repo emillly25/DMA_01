@@ -4,10 +4,33 @@ import Layout from '../../components/Layout'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 import dayjs from 'dayjs'
+import { useMutation } from '@tanstack/react-query'
 
 export default function NoticeDetail({ data }) {
   const router = useRouter()
   const date = dayjs(data.createdAt).format('YYYY-MM-DD')
+  const id = router.query.id as string
+
+  async function deleteNotice(id: string) {
+    try {
+      await api.delete(`/admin/notice/${id}`)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const deleteMutation = useMutation(deleteNotice, {
+    onSuccess: () => {
+      router.push('/notice')
+    },
+  })
+
+  function deleteHandler(id: string) {
+    if (confirm('삭제하시겠습니까?')) {
+      deleteMutation.mutate(id)
+    }
+    return
+  }
   return (
     <Layout>
       <div className="container mx-auto">
@@ -39,6 +62,19 @@ export default function NoticeDetail({ data }) {
             className="mx-[5%] flex flex-col items-center border-2 border-solid border-blue-400"
             dangerouslySetInnerHTML={{ __html: data.content }}
           ></div>
+          <div className="mx-[5%] mt-3 flex justify-end gap-2">
+            <button
+              onClick={() => {
+                deleteHandler(id)
+              }}
+              className="w-[5%] h-[40px] text-white bg-slate-600"
+            >
+              삭제
+            </button>
+            <button className="w-[5%] h-[40px] text-white bg-slate-600">
+              수정
+            </button>
+          </div>
         </article>
       </div>
     </Layout>
