@@ -71,7 +71,12 @@ export default function NoticeDetail({ data }) {
             >
               삭제
             </button>
-            <button className="w-[5%] h-[40px] text-white bg-slate-600">
+            <button
+              onClick={() => {
+                router.push(`/admin/notice/update/${id}`)
+              }}
+              className="w-[5%] h-[40px] text-white bg-slate-600"
+            >
               수정
             </button>
           </div>
