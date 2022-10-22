@@ -15,6 +15,7 @@ adminRouter.post(
 adminRouter.delete('/notice/:id', deleteImg, noticeController.deleteNotice);
 adminRouter.patch(
   '/notice/:id',
+  deleteImg,
   upload.single('src'),
   noticeController.updateNotice,
 );
