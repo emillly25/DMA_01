@@ -33,6 +33,9 @@ export class NoticeModel {
   async deleteNotice(id: string): Promise<any> {
     return await Notice.deleteOne({ _id: id });
   }
+  async updateNotice(id: string, notice: NoticeData): Promise<any> {
+    return await Notice.updateOne({ _id: id }, { ...notice });
+  }
 }
 
 const noticeModel = new NoticeModel();

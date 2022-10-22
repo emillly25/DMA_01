@@ -81,6 +81,16 @@ class NoticeController {
       console.error(error);
     }
   }
+  async updateNotice(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params;
+      const body = req.body;
+      const result = await noticeModel.updateNotice(id, body);
+      res.status(200).json(result);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
 
 const noticeController = new NoticeController();
