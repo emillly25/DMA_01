@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { noticeController } from '../controllers/noticeController';
-import { upload, deleteImg } from '../middlewares/multer';
+import { upload, deleteImg, updateImg } from '../middlewares/multer';
 const adminRouter: Router = Router();
 
 adminRouter.get('/notice', noticeController.pagingNotices);
@@ -15,7 +15,7 @@ adminRouter.post(
 adminRouter.delete('/notice/:id', deleteImg, noticeController.deleteNotice);
 adminRouter.patch(
   '/notice/:id',
-  deleteImg,
+  updateImg,
   upload.single('src'),
   noticeController.updateNotice,
 );
